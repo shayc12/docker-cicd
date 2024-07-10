@@ -1,8 +1,8 @@
 job('NodeJS Docker example') {
     scm {
-        git('git://github.com/yanivomc/docker-cicd.git','master') {  node -> // is hudson.plugins.git.GitSCM
-            node / gitConfigName('DSL User')
-            node / gitConfigEmail('jenkins-dsl@devophift.work')
+        git('https://github.com/shayc12/docker-cicd.git','master') {  node -> // is hudson.plugins.git.GitSCM
+            node / gitConfigName('DSL Jenkins')
+            node / gitConfigEmail('jenkins-dsl@example.com')
         }
     }
     triggers {
@@ -12,9 +12,9 @@ job('NodeJS Docker example') {
     
     steps {
         dockerBuildAndPublish {
-            repositoryName('yanivomc/amdocsapp')
+            repositoryName('shayc12/jenkdocker')
             tag('${GIT_REVISION,length=9}')
-            registryCredentials('yaniv-dockerhub')
+            registryCredentials('shaydocker')
             buildContext('./basics/')
             forcePull(false)
             forceTag(false)
